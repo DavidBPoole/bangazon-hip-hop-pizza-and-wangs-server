@@ -1,5 +1,5 @@
-##DRF Installations and Configuration
-#Setup
+## DRF Installations and Configuration
+# Setup
 Creating the Project and Virtual Environment
 Do not copy all of these at once and paste them into your terminal. Copy and run each one separately.
 
@@ -18,7 +18,7 @@ Don't forget the . at the end of the command below. Pro-tip: Use the copy button
 django-admin startproject <project_name> .
 After running this command, you will notice that you now have a directory called <project_name> in your project. It includes several .py files.
 
-#Controlling Lint Errors
+# Controlling Lint Errors
 Add Pylint file
 The pylint package is very good at ensuring that you follow the community standards for variable naming, but there are certain times that you want to use variable names that are short and don't use snake case. You can put those variable names in a .pylintrc file in your project.
 
@@ -74,6 +74,7 @@ Below, you can see levelupapi in the list of installed apps. Whatever project yo
 levelup-server/levelup/settings.py
 
 # UPDATE THIS
+# settings.py
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -104,13 +105,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#Create Base Django Tables
+# Create Base Django Tables
 Django gives a built-in migration file that makes the tables in a SQLite database for you. Go ahead and run that migration to set up the initial tables.
 
 python manage.py migrate
 
 
-#Running the Django Server With VS Code Debugger
+# Running the Django Server With VS Code Debugger
 
 Inside the .vscode create a file called launch.json. Paste the following code in that file.
 
