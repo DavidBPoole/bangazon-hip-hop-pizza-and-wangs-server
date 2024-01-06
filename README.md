@@ -59,14 +59,14 @@ Uncomment out the Pipfile.lock line to make sure this gets ignored (line 95 when
 
 Add .vscode to the .gitignore file.
 
-#Setting Up Package Directories
+# Setting Up Package Directories
 Run the following commands to remove some boilerplate files that you won't be using, and create directories that will contain the code for your application.
 
 rm <project_name>/models.py <project_name>/views.py
 mkdir <project_name>/models <project_name>/views
 touch <project_name>/models/__init__.py <project_name>/views/__init__.py
 
-#Update Settings
+# Update Settings
 Below, there are four sections of your project's settings.py module. Replace your existing sections with the code below.
 
 These settings changes will be needed for any REST API application that you make. The only thing that will differ between applications is the name of the application itself.
