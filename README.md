@@ -49,10 +49,12 @@ Now that the project is set up and has some initial configuration, it's time to 
 
 Make sure you are in your <project_name> directory when you run this command.
 python manage.py startapp <project_name>api
-Add Content To .gitignore File
+
+# Add Content To .gitignore File
 Create a .gitignore file and generate the content for it by running this command
 
 curl -L -s 'https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore' > .gitignore
+
 Uncomment out the Pipfile.lock line to make sure this gets ignored (line 95 when this was written)
 
 Add .vscode to the .gitignore file.
