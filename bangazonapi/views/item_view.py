@@ -3,10 +3,10 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from bangazonapi.models import Item
+from bangazonapi.models.item import Item
 from bangazonapi.serializers import ItemSerializer
 
-class MenuView(ViewSet):
+class ItemView(ViewSet):
   """Hip Hop, Pizza, & Wings Menu View"""
   
   def retrieve(self, request, pk):

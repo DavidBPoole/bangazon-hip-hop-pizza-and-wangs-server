@@ -17,9 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from bangazonapi.views import check_user, register_user
+from bangazonapi.views import ItemView, OrderCategoryView, OrderItemView, OrderTypeView, OrderView, PaymentTypeView, RevenueView, UserView, check_user, register_user
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'items', ItemView, 'item')
+router.register(r'ordercategories', OrderCategoryView, 'ordercategory')
+router.register(r'orderitems', OrderItemView, 'orderitem')
+router.register(r'orders', OrderView, 'order')
+router.register(r'ordertypes', OrderTypeView, 'ordertype')
+router.register(r'paymenttypes', PaymentTypeView, 'paymenttype')
+router.register(r'revenues', RevenueView, 'revenue')
+router.register(r'users', UserView, 'user')
 
 urlpatterns = [
     path('', include(router.urls)),

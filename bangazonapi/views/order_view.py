@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from bangazonapi.models import Order, User, OrderType, PaymentType, OrderItem, Item
-from bangazonapi.serializers.order_serializer import OrderSerializer
+from bangazonapi.serializers import OrderSerializer
 
 class OrderView(ViewSet):
   """Hip Hop, Pizza, & Wings Order View"""
@@ -56,20 +56,21 @@ class OrderView(ViewSet):
   def create(self, request):
     """Handle POST request for orders
     Returns -> JSON serialized order instance with 201 status"""
-    server = User.objects.get(pk=request.data['server'])
+    user = User.objects.get(pk=request.data['username'])
     type = OrderType.objects.get(pk=request.data['type'])
     payment = PaymentType.objects.get(pk=request.data['payment'])
     
     order = Order.objects.create(
-      server = server,
-      is_open = request.data['isOpen'],
-      subtotal = request.data['subtotal'],
-      tip = request.data['tip'],
-      tax = request.data['tax'],
-      total = request.data['total'],
-      customer = request.data['customer'],
-      email = request.data['email'],
-      phone = request.data['phone'],
+      user = user,
+      is_closed = request.data['isClosed'],
+      order_name = request.data['orderName'],
+      customer_phone = request.data['customerPhone'],
+      customer_email = request.data['customerEmail'],
+      order_type = request.data['orderType'],
+      order_total = request.data['orderTotal'],
+      timestamp = request.data['timestamp'],
+      date = request.data['date'],
+      payment_type = request.data['paymentType'],
       type = type,
       payment = payment,
     )
@@ -82,21 +83,23 @@ class OrderView(ViewSet):
     
     Returns -> JSON serialized order instance with 200 status"""
     
-    server = Employee.objects.get(pk=request.data['server'])
+    user = User.objects.get(pk=request.data['username'])
     type = OrderType.objects.get(pk=request.data['type'])
     payment = PaymentType.objects.get(pk=request.data['payment'])
     
     order = Order.objects.get(pk=pk)
     
-    order.server = server
-    order.is_open = request.data['isOpen']
-    order.subtotal = request.data['subtotal']
-    order.tip = request.data['tip']
-    order.tax = request.data['tax']
-    order.total = request.data['total']
-    order.customer = request.data['customer']
-    order.email =request.data['email']
-    order.phone = request.data['phone']
+    order.user = user
+    order.is_closed = request.data['isClosed']
+    order.order_name = request.data['orderName']
+    order.customer_phone = request.data['customerPhone']
+    order.customer_email = request.data['customerEmail']
+    order.order_type = request.data['orderType']
+    order.order_total = request.data['orderTotal']
+    order.timestamp = request.data['timestamp']
+    order.date =request.data['date']
+    order.payment_type = request.data['paymentType']
+    order.status = request.data['orderStatus']
     order.type = type
     order.payment = payment
     

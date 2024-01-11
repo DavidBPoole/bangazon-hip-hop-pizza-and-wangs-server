@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from bangazonapi.models import Order, Item, OrderItem
+from bangazonapi.models import Order, OrderItem, Item
 from bangazonapi.serializers import OrderItemSerlializer
 
 class OrderItemView(ViewSet):
@@ -61,7 +61,6 @@ class OrderItemView(ViewSet):
     
     orderitem.order = order
     orderitem.item = item
-    orderitem.quantity = request.data['quantity']
     
     orderitem.save()
     serializer = OrderItemSerlializer(orderitem)
@@ -70,7 +69,7 @@ class OrderItemView(ViewSet):
   def destroy(self, request, pk):
     """Handles Delete request for an order item
     
-    Returns -> Empy body with 204 status"""
+    Returns -> Empty body with 204 status"""
     
     orderitem = OrderItem.objects.get(pk=pk)
     orderitem.delete()
