@@ -1,11 +1,9 @@
-# In your views.py file within the bangazonapi app
-
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework import serializers, status
 from rest_framework import status
 from bangazonapi.models import User
-from bangazonapi.serializers import UserSerializer
 
 class UserView(ViewSet):
     """View for handling requests for users"""
@@ -31,3 +29,9 @@ class UserView(ViewSet):
             return Response(serializer.data)
         except User.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for the User model"""
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'uid')

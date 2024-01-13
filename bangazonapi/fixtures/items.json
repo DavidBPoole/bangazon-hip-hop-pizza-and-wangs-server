@@ -1,0 +1,26 @@
+[
+  {
+    "model": "bangazonapi.item",
+    "pk": 1,
+    "fields": {
+      "name": "Cheese Pizza",
+      "price": 10.99
+    }
+  },
+  {
+    "model": "bangazonapi.item",
+    "pk": 2,
+    "fields": {
+      "name": "Cheese Stix",
+      "price": 5.99
+    }
+  },
+  {
+    "model": "bangazonapi.item",
+    "pk": 3,
+    "fields": {
+      "name": "Calzone",
+      "price": 7.49
+    }
+  }
+]

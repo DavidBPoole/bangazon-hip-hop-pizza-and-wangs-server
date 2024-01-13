@@ -17,15 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from bangazonapi.views import ItemView, OrderCategoryView, OrderItemView, OrderTypeView, OrderView, PaymentTypeView, RevenueView, UserView, check_user, register_user
+from bangazonapi.views import ItemView, OrderItemView, OrderView, RevenueView, UserView, check_user, register_user
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'items', ItemView, 'item')
-router.register(r'ordercategories', OrderCategoryView, 'ordercategory')
 router.register(r'orderitems', OrderItemView, 'orderitem')
 router.register(r'orders', OrderView, 'order')
-router.register(r'ordertypes', OrderTypeView, 'ordertype')
-router.register(r'paymenttypes', PaymentTypeView, 'paymenttype')
 router.register(r'revenues', RevenueView, 'revenue')
 router.register(r'users', UserView, 'user')
 
@@ -34,4 +31,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('checkuser', check_user),
     path('register', register_user),
+    path('orders/<int:pk>/add_order_item/<int:item_id>', OrderView.as_view({'post': 'add_order_item'}), name='order-add-order-item'),
+    path('orders/<int:pk>/remove_order_item/<int:order_item>', OrderView.as_view({'delete': 'remove_order_item'}), name='order-remove-order-item'),
 ]
