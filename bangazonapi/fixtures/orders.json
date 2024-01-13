@@ -1,0 +1,38 @@
+[
+  {
+    "model": "bangazonapi.order",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "name": "Sample Order 1",
+      "phone": "123-456-7890",
+      "email": "sample@example.com",
+      "type": "phone",
+      "open": true
+    }
+  },
+  {
+    "model": "bangazonapi.order",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "name": "Sample Order 2",
+      "phone": "987-654-3210",
+      "email": "another@example.com",
+      "type": "in-person",
+      "open": false
+    }
+  },
+  {
+    "model": "bangazonapi.order",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "name": "Sample Order 3",
+      "phone": "987-654-3210",
+      "email": "another@example.com",
+      "type": "phone",
+      "open": true
+    }
+  }
+]

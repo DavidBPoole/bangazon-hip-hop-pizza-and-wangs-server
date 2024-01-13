@@ -1,0 +1,26 @@
+[
+  {
+    "model": "bangazonapi.revenue",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "date": "2024-01-12 18:28:33",
+      "payment": "credit",
+      "subtotal": "34.95",
+      "tip": "7.00",
+      "total": "41.95"
+    }
+  },
+  {
+    "model": "bangazonapi.revenue",
+    "pk": 2,
+    "fields": {
+      "order": 1,
+      "date": "2024-01-12 15:28:33",
+      "payment": "cash",
+      "subtotal": "22.50",
+      "tip": "5.00",
+      "total": "27.50"
+    }
+  }
+]
