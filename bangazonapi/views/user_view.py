@@ -5,6 +5,7 @@ from rest_framework import serializers, status
 from rest_framework import status
 from bangazonapi.models import User
 
+
 class UserView(ViewSet):
     """View for handling requests for users"""
 
