@@ -37,7 +37,8 @@ class OrderView(ViewSet):
         """Handle POST operations
         Returns Response -- JSON serialized order instance"""
         try:
-            user = User.objects.get(id=request.data["user"])
+            # Remember that when attempting to create the intended object and not another simply in the object's model you must identify the primary key "pk" for the request.data and then specify from that object's model what is being authenticated to it, in this case "user"
+            user = User.objects.get(pk=request.data["user"])
 
             order = Order.objects.create(
                 user=user,
