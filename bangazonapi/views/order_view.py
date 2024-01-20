@@ -95,7 +95,7 @@ class OrderView(ViewSet):
     def add_order_item(self, request, pk, item_id=None):
         """Post request for a user to add an item to an order"""
         try:
-            # item = Item.objects.get(pk=request.data["item"])
+
             item = Item.objects.get(pk=item_id)
             order = Order.objects.get(pk=pk)
 
@@ -113,7 +113,7 @@ class OrderView(ViewSet):
     def remove_order_item(self, request, pk, order_item=None):
         """Delete request for a user to remove an item from an order"""
         try:
-            # orderitem = OrderItem.objects.get(pk=request.data.get("order_item"), order__pk=pk)
+
             order_item_id = self.kwargs.get('order_item')
             orderitem = OrderItem.objects.get(pk=order_item_id, order__pk=pk)
 
@@ -124,15 +124,15 @@ class OrderView(ViewSet):
             return Response("Order item removed", status=status.HTTP_204_NO_CONTENT)
         except OrderItem.DoesNotExist:
             return Response({'error': 'Order item not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+    @action(detail=True, methods=['PATCH'])
+    def close_order(self, request, pk=None):
+        """Custom action to close an order."""
+        order = Order.objects.get(pk=pk)
+        order.open = False
+        order.save()
+        return Response({'status': 'order closed'}, status=status.HTTP_200_OK)
     
-    # @action(methods=['delete'], detail=True)
-    # def remove_order_item(self, request, pk):
-    #     """Delete request for a user to remove an item from an order"""
-
-    #     orderitem = request.data.get("order_item")
-    #     OrderItem.objects.filter(pk=orderitem, order__pk=pk).delete()
-
-    #     return Response("Order item removed", status=status.HTTP_204_NO_CONTENT)
 
 class OrderSerializer(serializers.ModelSerializer):
     """JSON serializer for orders"""
