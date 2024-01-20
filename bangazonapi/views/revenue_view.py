@@ -2,8 +2,8 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from bangazonapi.models import Revenue, Order, OrderItem
-from django.db.models import Sum, Count
+from bangazonapi.models import Revenue, Order
+# from django.db.models import Sum, Count
 
 class RevenueView(ViewSet):
     """revenue view"""
@@ -22,34 +22,10 @@ class RevenueView(ViewSet):
             return Response({'message': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        """Handle GET requests to get all revenue nodes with additional aggregated data.
-        Returns: Response -- JSON serialized list of revenue nodes with aggregated data"""
-
-        try:
-            revenues = Revenue.objects.all()
-            
-            # Calculates total revenue
-            total_revenue = revenues.aggregate(total=Sum('total'))['total'] or 0
-
-            # Calculates total tips
-            total_tips = revenues.aggregate(total=Sum('tip'))['total'] or 0
-
-            # Counts payment types
-            payment_counts = revenues.values('payment').annotate(count=Count('payment'))
-
-            # Prepare the response data with aggregated values
-            serializer = RevenueSerializer(revenues, many=True)
-            response_data = {
-                "revenues": serializer.data,
-                "totalRevenue": total_revenue,
-                "totalTips": total_tips,
-                "paymentTypeCounts": payment_counts,
-            }
-
-            return Response(response_data)
-        except Exception as e:
-            return Response({'message': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+        revenues = Revenue.objects.all()
+        serializer = RevenueSerializer(revenues, many=True)
+        return Response(serializer.data)
+        
     def create(self, request):
         """Create Revenue Entry"""
         order_id = Order.objects.get(pk=request.data["orderId"])
